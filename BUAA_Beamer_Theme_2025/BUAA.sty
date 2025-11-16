@@ -1,0 +1,95 @@
+\RequirePackage{tikz}
+
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+%外部主题设置
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+% 底部导航区显示作者机构和标题，顶部导航区不显示小节标题，换用miniframes主题可取消底部的颜色过渡，但顶部帧会变为多行
+
+
+\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+
+% 设置底部格式 (已按你的要求修改)
+\defbeamertemplate*{footline}{BUAA_beamer}{%
+	\leavevmode%
+	\hbox{%
+		% --- 第1块：机构 (替换了之前的"作者") ---
+		\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortinstitute
+		\end{beamercolorbox}%
+		% --- 第2块：作者 (替换了之前的"日期") ---
+		\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		% --- 第3块：标题 (不变) ---
+		\begin{beamercolorbox}[wd=.435\paperwidth,ht=2.5ex,dp=1.125ex,center]{author in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		% --- 第4块：页码 (不变) ---
+		\begin{beamercolorbox}[wd=0.065\paperwidth,ht=2.5ex,dp=1.125ex,right]{author in head/foot}%
+			\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\makeatother
+
+\useinnertheme{circles}
+
+%\useoutertheme{default}
+%\useinnertheme[shadow=true]{rounded}
+
+
+\xdefinecolor{BUAA1}{RGB}{0,91,172}  %RGB#B01019 BUAA校徽取色
+\xdefinecolor{BUAA2}{RGB}{0,140,222}
+\xdefinecolor{BUAA3}{RGB}{0,61,166}
+\setbeamercolor{footline}{bg=BUAA1, fg=white}
+%底部背景色
+\setbeamercolor{frametitle}{bg=BUAA2,fg=white}
+
+\setbeamercolor{title}{bg=BUAA1}
+% 首页标题栏背景色
+\setbeamerfont{frametitle}{size=\large}
+% 幻灯片标题字号
+%\setbeamertemplate{navigation symbols}{} % 不需要导航栏时删除此行最前面的%
+\setbeamertemplate{bibliography item}[text]
+% 使用参考文献文本作为条目，也可将text替换为default/article/book/online/triangle
+\setbeamertemplate{caption}[numbered]
+% 为图表添加编号
+
+%导航栏颜色设置
+\setbeamercolor{palette primary}{bg=BUAA2, fg=white}
+\setbeamercolor{palette secondary}{bg=BUAA2, fg=white}
+\setbeamercolor{palette tertiary}{bg=BUAA2, fg=white}
+\setbeamercolor{palette quaternary}{bg=BUAA1, fg=white} % 四级调色板通常跟随三级
+%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}% 侧栏
+\setbeamercolor{titlelike}{parent=palette primary}
+
+%% try
+\setbeamercolor{block title}{bg=BUAA1,fg=white}
+\setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=BUAA1}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+%\setbeamercolor{palette sidebar quaternary}{fg=white}
+\setbeamercolor{section in sidebar}{fg=brown}
+\setbeamercolor{section in sidebar shaded}{fg=grey}
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=BUAA1}
+\setbeamercolor{sidebar}{parent=palette primary}
+\setbeamercolor{structure}{fg=BUAA1}
+\setbeamercolor{subsection in sidebar}{fg=brown}
+\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+
+%\setbeamertemplate{background}{\includegraphics[width=12.8cm]{pic/background.eps}}
+\mode
+<all>
